@@ -54,8 +54,11 @@ export default async function Home() {
         )}
         <div className="section-wrapper">
           <div className="hero-content">
-            <h2 className="hero-headline">{hero.headline}</h2>
-            <h1 className="hero-hook">{hero.mainHook}</h1>
+            <span>
+              <h2 className="hero-headline">{hero.headline}</h2>
+              <h1 className="hero-hook">{hero.mainHook}</h1>
+            </span>
+            <img src={hero.heroImage.image} alt={hero.heroImage.alt} />
           </div>
           <div className="cta">
             <a href="#" className="cta-btn">

@@ -37,6 +37,22 @@ const hero = {
         },
       ],
     }),
+    defineField({
+      name: "heroImage",
+      type: "image",
+      title: "Hero Image",
+      options: {
+        hotspot: true,
+      },
+      validation: (Rule) => Rule.required(),
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    }),
   ],
 };
 

@@ -7,8 +7,8 @@ export async function POST(req) {
 
     const res = await sendMail(from, subject, content);
 
-    return NextResponse({ msg: res }).json();
+    return NextResponse.json({}, { status: 200 });
   } catch (err) {
-    return new Error(err);
+    return NextResponse.error(err);
   }
 }

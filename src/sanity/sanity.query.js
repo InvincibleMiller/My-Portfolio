@@ -30,6 +30,7 @@ export async function getHero() {
       mainHook,
       cta,
       background {alt, "image": asset->url},
+      heroImage {alt, "image": asset->url},
     }`
   );
 }

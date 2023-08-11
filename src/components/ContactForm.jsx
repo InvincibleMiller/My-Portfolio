@@ -1,73 +1,119 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useRef } from "react";
+
+function InputField({ id, title, errors, form }) {
+  const ref = useRef();
+
+  if (errors[id]) {
+    ref.current?.classList.add("error");
+  } else {
+    ref.current?.classList.remove("error");
+  }
+
+  return (
+    <div className="input" ref={ref}>
+      <label htmlFor={id}>{title}</label>
+      <input
+        type="text"
+        autoComplete="off"
+        id={id}
+        {...form.register(id, { required: "*" })}
+      />
+    </div>
+  );
+}
+function TextAreaField({ id, rows, title, errors, form }) {
+  const ref = useRef();
+
+  if (errors[id]) {
+    ref.current?.classList.add("error");
+  } else {
+    ref.current?.classList.remove("error");
+  }
+
+  return (
+    <div className="input" ref={ref}>
+      <label htmlFor={id}>{title}</label>
+      <textarea
+        rows={rows}
+        autoComplete="off"
+        id={id}
+        {...form.register(id, { required: "*" })}
+      />
+    </div>
+  );
+}
 
 export default function App() {
+  const formState = useForm();
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors: formErrors },
+  } = formState;
 
   const onSubmit = async (data) => {
-    const from = `${data["fullName"]} @ ${data["organization"]}`;
+    const from = `${data["name-field"]} @ ${data["organization-field"]}`;
 
-    await fetch("/api/sendMail", {
-      method: "POST",
-      body: JSON.stringify({
-        from: from,
-        subject: data["subject"],
-        content: data["content"],
-      }),
-    });
+    try {
+      const res = await fetch("/api/sendMail", {
+        method: "POST",
+        body: JSON.stringify({
+          from: from,
+          subject: data["subject-field"],
+          content: data["content-field"],
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      //
+      // Show some success confirmation
+      //
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  // console.log(errors);
-  for (const key in errors) {
-    console.log(errors[key].ref.parentElement.classList);
-  }
+  const nameElement = useRef();
+  const organizationElement = useRef();
+  const subjectElement = useRef();
+  const contentElement = useRef();
 
   return (
     <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-header">
         <h2>Contact</h2>
       </div>
-      <div className="input">
-        <label htmlFor="name-field">Full Name</label>
-        <input
-          type="text"
-          autoComplete="off"
-          id="name-field"
-          {...register("fullName", { required: "*" })}
-        />
-      </div>
-      <div className="input">
-        <label htmlFor="organization-field">Organization</label>
-        <input
-          type="text"
-          autoComplete="off"
-          id="organization-field"
-          {...register("organization", { required: "*" })}
-        />
-      </div>
-      <div className="input">
-        <label htmlFor="subject-field">Subject</label>
-        <input
-          autoComplete="off"
-          type="text"
-          id="subject-field"
-          {...register("subject", { required: "*" })}
-        />
-      </div>
-      <div className="input">
-        <label htmlFor="content-field">Content</label>
-        <textarea
-          rows={6}
-          id="content-field"
-          autoComplete="off"
-          {...register("content", { required: "*" })}
-        />
-      </div>
+      <InputField
+        id="name-field"
+        errors={formErrors}
+        title="Full Name"
+        form={formState}
+      />
+      <InputField
+        id="organization-field"
+        errors={formErrors}
+        title="Organization"
+        form={formState}
+      />
+      <InputField
+        id="subject-field"
+        errors={formErrors}
+        title="Subject"
+        form={formState}
+      />
+      <TextAreaField
+        id={"content-field"}
+        rows={6}
+        title={"Content"}
+        form={formState}
+        errors={formErrors}
+      />
 
       <input className="input btn" type="submit" />
     </form>
