@@ -50,7 +50,9 @@ export default async function Home() {
           <div
             className="section-background"
             style={{ backgroundImage: `url("${hero.background.image}")` }}
-          ></div>
+          >
+            <img src={hero.background.image} style={{ display: "none" }} />
+          </div>
         )}
         <div className="section-wrapper">
           <div className="hero-content">
@@ -58,10 +60,12 @@ export default async function Home() {
               <h2 className="hero-headline">{hero.headline}</h2>
               <h1 className="hero-hook">{hero.mainHook}</h1>
             </span>
-            <img src={hero.heroImage.image} alt={hero.heroImage.alt} />
+            {hero.heroImage && (
+              <img src={hero.heroImage.image} alt={hero.heroImage.alt} />
+            )}
           </div>
           <div className="cta">
-            <a href="#" className="cta-btn">
+            <a href="/#contact-section" className="cta-btn">
               {hero.cta}
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -87,35 +87,43 @@ export default function App() {
   return (
     <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-header">
-        <h2>Contact</h2>
+        <h2 className="section-header">Contact</h2>
+        <p>
+          Interested in working with me? Reach out, and let's schedule a
+          meeting.
+        </p>
       </div>
-      <InputField
-        id="name-field"
-        errors={formErrors}
-        title="Full Name"
-        form={formState}
-      />
-      <InputField
-        id="organization-field"
-        errors={formErrors}
-        title="Organization"
-        form={formState}
-      />
-      <InputField
-        id="subject-field"
-        errors={formErrors}
-        title="Subject"
-        form={formState}
-      />
-      <TextAreaField
-        id={"content-field"}
-        rows={6}
-        title={"Content"}
-        form={formState}
-        errors={formErrors}
-      />
+      <div className="fields">
+        <span className="row">
+          <InputField
+            id="name-field"
+            errors={formErrors}
+            title="Full Name"
+            form={formState}
+          />
+          <InputField
+            id="organization-field"
+            errors={formErrors}
+            title="Organization"
+            form={formState}
+          />
+        </span>
+        <InputField
+          id="subject-field"
+          errors={formErrors}
+          title="Subject"
+          form={formState}
+        />
+        <TextAreaField
+          id={"content-field"}
+          rows={6}
+          title={"Content"}
+          form={formState}
+          errors={formErrors}
+        />
 
-      <input className="input btn" type="submit" />
+        <input className="input btn" type="submit" />
+      </div>
     </form>
   );
 }

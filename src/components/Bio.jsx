@@ -10,7 +10,6 @@ export default function Bio({ pages }) {
   const longBtnRef = useRef();
 
   useEffect(() => {
-    console.log(window.innerWidth);
     if (window.innerWidth >= 800) {
       useLong();
     } else {

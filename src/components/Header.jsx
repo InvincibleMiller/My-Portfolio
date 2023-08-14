@@ -5,9 +5,20 @@ import { useRef, useEffect } from "react";
 
 function Header() {
   const ref = useRef();
+  const firstTop = useRef(null);
 
   function handleStickyStyle() {
-    if (ref.current.scrollTop < ref.current.offsetTop) {
+    if (firstTop.current == null) {
+      const main = document.querySelector("main");
+      const firstChild = main.firstChild;
+
+      firstTop.current = firstChild.offsetTop + firstChild.offsetHeight;
+
+      console.log(firstTop.current);
+    }
+    // console.log(ref.current.offsetTop);
+
+    if (ref.current.offsetTop + ref.current.offsetHeight >= firstTop.current) {
       ref.current.classList.add("sticky");
     } else {
       ref.current.classList.remove("sticky");
@@ -41,6 +52,9 @@ function Header() {
             </li>
             <li>
               <Link href="/#work-section">Work</Link>
+            </li>
+            <li>
+              <Link href="/#contact-section">Contact</Link>
             </li>
           </ul>
         </nav>
