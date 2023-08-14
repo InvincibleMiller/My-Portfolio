@@ -48,6 +48,20 @@ const profile = {
       title: "Skills",
       of: [{ type: "string" }],
     },
+    {
+      type: "array",
+      name: "socials",
+      title: "Socials",
+      of: [
+        {
+          type: "image",
+          fields: [
+            { type: "url", name: "link", title: "Link" },
+            { type: "string", name: "alt", title: "Alt" },
+          ],
+        },
+      ],
+    },
   ],
 };
 

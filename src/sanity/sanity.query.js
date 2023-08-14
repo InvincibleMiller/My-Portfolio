@@ -18,6 +18,7 @@ export async function getProfile() {
         "short": shortBio
       },
       skills,
+      socials []{"image": asset->url, link, alt},
     }`
   );
 }

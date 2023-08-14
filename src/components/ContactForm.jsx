@@ -3,7 +3,15 @@
 import { useForm } from "react-hook-form";
 import { useRef } from "react";
 
-function InputField({ id, title, errors, form }) {
+function InputField({
+  id,
+  title,
+  errors,
+  form,
+  type = "text",
+  placeHolder = "",
+  options = {},
+}) {
   const ref = useRef();
 
   if (errors[id]) {
@@ -14,17 +22,29 @@ function InputField({ id, title, errors, form }) {
 
   return (
     <div className="input" ref={ref}>
-      <label htmlFor={id}>{title}</label>
+      <label htmlFor={id}>
+        {title}
+        {errors[id] && <> — {errors[id]?.message}</>}
+      </label>
       <input
-        type="text"
+        type={type}
         autoComplete="off"
         id={id}
-        {...form.register(id, { required: "*" })}
+        placeholder={placeHolder}
+        {...form.register(id, { required: "Required", ...options })}
       />
     </div>
   );
 }
-function TextAreaField({ id, rows, title, errors, form }) {
+function TextAreaField({
+  id,
+  rows,
+  title,
+  errors,
+  form,
+  placeHolder = "",
+  options = {},
+}) {
   const ref = useRef();
 
   if (errors[id]) {
@@ -35,12 +55,16 @@ function TextAreaField({ id, rows, title, errors, form }) {
 
   return (
     <div className="input" ref={ref}>
-      <label htmlFor={id}>{title}</label>
+      <label htmlFor={id}>
+        {title}
+        {errors[id] && <> — {errors[id]?.message}</>}
+      </label>
       <textarea
         rows={rows}
         autoComplete="off"
         id={id}
-        {...form.register(id, { required: "*" })}
+        placeholder={placeHolder}
+        {...form.register(id, { required: "Required", ...options })}
       />
     </div>
   );
@@ -48,15 +72,16 @@ function TextAreaField({ id, rows, title, errors, form }) {
 
 export default function App() {
   const formState = useForm();
+  const submitButton = useRef();
 
   const {
-    register,
+    reset,
     handleSubmit,
     formState: { errors: formErrors },
   } = formState;
 
   const onSubmit = async (data) => {
-    const from = `${data["name-field"]} @ ${data["organization-field"]}`;
+    const from = `${data["name-field"]} — ${data["email-field"]}`;
 
     try {
       const res = await fetch("/api/sendMail", {
@@ -71,18 +96,21 @@ export default function App() {
         },
       });
 
-      //
-      // Show some success confirmation
-      //
+      reset();
+
+      (async () => {
+        submitButton.current.innerText = "Success!";
+        setTimeout(() => {
+          submitButton.current.innerText = "Submit";
+        }, 2000);
+      })();
     } catch (error) {
       console.error(error);
     }
   };
 
-  const nameElement = useRef();
-  const organizationElement = useRef();
-  const subjectElement = useRef();
-  const contentElement = useRef();
+  const emailRex =
+    /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
   return (
     <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
@@ -100,18 +128,30 @@ export default function App() {
             errors={formErrors}
             title="Full Name"
             form={formState}
+            placeHolder="John Doe"
           />
           <InputField
-            id="organization-field"
+            id="email-field"
             errors={formErrors}
-            title="Organization"
+            title="Email"
             form={formState}
+            placeHolder="johndoe@email.com"
+            options={{
+              validate: (v) => {
+                if (!emailRex.exec(v)) {
+                  return "Invalid Email";
+                }
+
+                return true;
+              },
+            }}
           />
         </span>
         <InputField
           id="subject-field"
           errors={formErrors}
           title="Subject"
+          placeHolder="Contracted Service Request"
           form={formState}
         />
         <TextAreaField
@@ -119,10 +159,18 @@ export default function App() {
           rows={6}
           title={"Content"}
           form={formState}
+          placeHolder={
+            "{COMPANY NAME} is interested in employing you to do a job..."
+          }
           errors={formErrors}
+          options={{
+            validate: (v) => v.length > 60 || "at least 60 characters",
+          }}
         />
 
-        <input className="input btn" type="submit" />
+        <button ref={submitButton} className="input btn" type="submit">
+          Submit
+        </button>
       </div>
     </form>
   );

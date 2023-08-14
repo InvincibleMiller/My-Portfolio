@@ -6,6 +6,7 @@
   --light-text: #f4d3bf;
   --primary: #07522f;
   --primary-bg: #07522f;
+  --primary-bg-tr: #09331fdd;
   --text-base: #39393a;
   --text-light: #201f22;
   --text-error: rgb(173, 15, 15);
@@ -91,6 +92,7 @@ body {
   animation: intro-all 750ms ease-out;
   transform-origin: top;
 }
+
 /* Header Bar */
 
 header {
@@ -106,11 +108,9 @@ header {
   transition: all 200ms linear;
 }
 
-/* header.sticky {
-  background-color: var(--light-bg);
-  color: var(--text-base);
-  border-bottom: 1px solid var(--text-base);
-} */
+header.sticky {
+  background-color: var(--primary-bg-tr);
+}
 
 .header-wrapper {
   display: flex;
@@ -189,6 +189,23 @@ section {
 .hero-content img {
   width: 50vw;
   max-width: 50%;
+}
+
+.socials-list {
+  display: flex;
+  gap: 1em;
+  justify-content: flex-start;
+  mask-size: cover;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  margin-top: 1rem;
+}
+
+.social-link {
+  background-color: currentColor;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
 }
 
 .hero-headline {

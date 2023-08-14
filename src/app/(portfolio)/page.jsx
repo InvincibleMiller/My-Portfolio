@@ -59,6 +59,32 @@ export default async function Home() {
             <span>
               <h2 className="hero-headline">{hero.headline}</h2>
               <h1 className="hero-hook">{hero.mainHook}</h1>
+              {profile.socials && (
+                <>
+                  <ul className="socials-list">
+                    {profile.socials.map((social, i) => {
+                      return (
+                        <li key={i}>
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={social.link}
+                            className="social-link"
+                            style={{
+                              WebkitMask: `url("${social.image}")`,
+                              mask: `url("${social.image}")`,
+                            }}
+                          >
+                            <span style={{ display: "none" }}>
+                              <img src={social.image} alt={social.alt} />
+                            </span>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              )}
             </span>
             {hero.heroImage && (
               <img src={hero.heroImage.image} alt={hero.heroImage.alt} />
