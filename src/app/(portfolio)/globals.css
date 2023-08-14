@@ -87,25 +87,10 @@ body {
   }
 }
 
-@keyframes intro-header {
-  from {
-    opacity: 0.5;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 .section-wrapper {
   animation: intro-all 750ms ease-out;
   transform-origin: top;
 }
-
-header {
-  animation: intro-header 750ms ease-out;
-}
-
 /* Header Bar */
 
 header {
