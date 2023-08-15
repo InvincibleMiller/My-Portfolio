@@ -4,9 +4,27 @@ import LenisRoot from "@/components/lenis";
 import Header from "@/components/Header";
 
 export const metadata = {
-  title: "Isaac Miller | Front End Web Developer | Invincible Miller",
+  metadataBase: new URL(process.env.SITE_URL),
+  title: {
+    default: "Isaac Miller | Invincible Miller",
+    template: "%s | Invincible Miller",
+  },
+  creator: "Isaac Miller",
+  publisher: "Isaac Miller",
+  applicationName: "Isaac Miller's Portfolio",
   description:
     "Front-End Web Portfolio by Isaac Miller. JavaScript/React, Next.js, Sanity CMS. 2 years of professional experience.",
+  keywords: [
+    "Isaac Miller",
+    "Software Engineer",
+    "Front End",
+    "Portfolio",
+    "Web Developer",
+    "Web Development",
+    "Next.js",
+    "React",
+    "JavaScript",
+  ],
 };
 
 export default function RootLayout({ children }) {
