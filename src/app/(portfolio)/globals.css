@@ -4,9 +4,9 @@
   /* Colors */
   --light-bg: #f9fdff;
   --light-text: var(--light-bg);
-  --primary: #100925;
-  --primary-bg: #100925;
-  --primary-bg-tr: #100925dd;
+  --primary: #18132b;
+  --primary-bg: var(--primary);
+  --primary-bg-tr: #18132bdd;
   --text-base: #39393a;
   --text-error: #ad0f0f;
   --transparent-black: #00000046;
@@ -461,9 +461,7 @@ section {
   .fields {
     flex: 1;
   }
-}
 
-@media screen and (min-width: 800px) {
   .project-card {
     grid-column: 1 / 4;
     flex-direction: row;
@@ -501,6 +499,11 @@ section {
   .hero-content {
     flex-direction: column-reverse;
     justify-content: space-around;
+    text-align: start;
+  }
+
+  h1 {
+    font-size: 4rem;
   }
 
   .hero-content img {
