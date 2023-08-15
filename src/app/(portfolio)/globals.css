@@ -3,13 +3,12 @@
 :root {
   /* Colors */
   --light-bg: #f9fdff;
-  --light-text: #f4d3bf;
-  --primary: #07522f;
-  --primary-bg: #07522f;
-  --primary-bg-tr: #09331fdd;
+  --light-text: var(--light-bg);
+  --primary: #100925;
+  --primary-bg: #100925;
+  --primary-bg-tr: #100925dd;
   --text-base: #39393a;
-  --text-light: #201f22;
-  --text-error: rgb(173, 15, 15);
+  --text-error: #ad0f0f;
   --transparent-black: #00000046;
 
   /* Spacing */
@@ -61,7 +60,6 @@ svg {
 }
 
 html {
-  background-color: var(--light-bg);
   font-size: 62.5%;
   font-family: "Ubuntu", sans-serif;
   color: var(--text-base);
