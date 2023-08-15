@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: www.invinciblemiller.com
+Host: https://www.invinciblemiller.com
 
 # Sitemaps
-Sitemap: www.invinciblemiller.com/sitemap.xml
+Sitemap: https://www.invinciblemiller.com/sitemap.xml
