@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.invinciblemiller.com
+Host: http://localhost:3000
 
 # Sitemaps
-Sitemap: https://www.invinciblemiller.com/sitemap.xml
+Sitemap: http://localhost:3000/sitemap.xml

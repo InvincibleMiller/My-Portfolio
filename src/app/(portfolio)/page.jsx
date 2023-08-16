@@ -4,33 +4,9 @@ import Bio from "@/components/Bio";
 import ContactForm from "@/components/ContactForm";
 
 export default async function Home() {
-  const fetchOptions = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "force-cache",
-  };
-
-  const hero = await (
-    await fetch(process.env.SITE_URL + "/api/home/hero", {
-      method: "GET",
-      ...fetchOptions,
-    })
-  ).json();
-
-  const profile = await (
-    await fetch(process.env.SITE_URL + "/api/home/profile", {
-      method: "GET",
-      ...fetchOptions,
-    })
-  ).json();
-
-  const projects = await (
-    await fetch(process.env.SITE_URL + "/api/home/projects", {
-      method: "GET",
-      ...fetchOptions,
-    })
-  ).json();
+  const hero = await getHero();
+  const profile = await getProfile();
+  const projects = await getProjects();
 
   const longBio = profile.bio.long.map(({ _key, style, text }) => {
     return (

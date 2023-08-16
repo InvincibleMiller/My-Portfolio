@@ -1,6 +1,5 @@
-// sanity/sanity.client.ts
-
-import { createClient } from "@sanity/client";
+import SanityClient from "next-sanity-client";
+import { cache } from "react";
 
 const config = {
   projectId: "vy0gmtde",
@@ -10,6 +9,6 @@ const config = {
   useCdn: false,
 };
 
-const client = createClient(config);
+const client = new SanityClient(config);
 
 export default client;
