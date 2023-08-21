@@ -42,7 +42,7 @@ export default async function Home() {
   );
 
   return (
-    <main>
+    <>
       <section className="hero">
         {hero.background && (
           <div
@@ -141,6 +141,6 @@ export default async function Home() {
           <ContactForm />
         </div>
       </section>
-    </main>
+    </>
   );
 }

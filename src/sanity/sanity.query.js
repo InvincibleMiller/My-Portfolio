@@ -3,8 +3,8 @@
 import client from "./sanity.client";
 
 const queryConfig = {
-  // cache: "force-cache",
-  cache: "no-store",
+  // cache: "no-store",
+  cache: "force-cache",
   next: { revalidate: 60 },
 };
 

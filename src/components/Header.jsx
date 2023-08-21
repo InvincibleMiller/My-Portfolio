@@ -9,10 +9,9 @@ function Header() {
 
   function handleStickyStyle() {
     if (firstTop.current == null) {
-      const main = document.querySelector("main");
-      const firstChild = main.firstChild;
+      const hero = document.querySelector(".hero");
 
-      firstTop.current = firstChild.offsetTop + firstChild.offsetHeight;
+      firstTop.current = hero.offsetTop + hero.offsetHeight;
 
       console.log(firstTop.current);
     }
