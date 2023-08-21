@@ -108,6 +108,7 @@ header {
 
 header.sticky {
   background-color: var(--primary-bg-tr);
+  backdrop-filter: blur(0.5em);
 }
 
 .header-wrapper {
