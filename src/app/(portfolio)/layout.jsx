@@ -6,8 +6,8 @@ import Header from "@/components/Header";
 export const metadata = {
   metadataBase: new URL(process.env.SITE_URL),
   title: {
-    default: "Isaac Miller | Invincible Miller",
-    template: "%s | Invincible Miller",
+    default: "Isaac Miller",
+    template: "%s | Isaac Miller",
   },
   creator: "Isaac Miller",
   publisher: "Isaac Miller",

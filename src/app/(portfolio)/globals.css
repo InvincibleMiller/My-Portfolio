@@ -133,6 +133,7 @@ header nav ul {
 /* Main + Sections */
 
 section {
+  padding: 2em 0;
   min-height: calc(75vh - var(--header-height));
   scroll-margin-top: var(--header-height);
 }

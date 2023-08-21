@@ -73,9 +73,7 @@ export default async function Home() {
                               mask: `url("${social.image}")`,
                             }}
                           >
-                            <span style={{ display: "none" }}>
-                              <img src={social.image} alt={social.alt} />
-                            </span>
+                            <span style={{ display: "none" }}></span>
                           </a>
                         </li>
                       );
