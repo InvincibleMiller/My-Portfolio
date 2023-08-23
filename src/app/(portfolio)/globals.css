@@ -20,7 +20,8 @@
 }
 
 ::selection {
-  background-color: #5ecdd9a3;
+  background-color: hsla(200, 74%, 48%, 0.461);
+  color: var(--light-text);
 }
 
 *,
@@ -93,6 +94,15 @@ body {
 
 /* Header Bar */
 
+.header-bg {
+  height: var(--header-height);
+  position: absolute;
+  background: var(--primary);
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 header {
   height: var(--header-height);
   font-family: "Junge", serif;
@@ -108,7 +118,7 @@ header {
 
 header.sticky {
   background-color: var(--primary-bg-tr);
-  backdrop-filter: blur(0.5em);
+  backdrop-filter: blur(0.5rem);
 }
 
 .header-wrapper {
@@ -134,7 +144,7 @@ header nav ul {
 /* Main + Sections */
 
 section {
-  padding: 2em 0;
+  padding: 4em 0;
   min-height: calc(75vh - var(--header-height));
   scroll-margin-top: var(--header-height);
 }
@@ -240,10 +250,6 @@ section {
 
 /* About */
 
-.about {
-  margin-bottom: 1rem;
-}
-
 .long-text p:not(:first-child) {
   margin-top: 1rem;
 }
@@ -318,14 +324,28 @@ section {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2em;
+  gap: var(--base-padding);
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  gap: 2em;
-  /* grid-template-columns: repeat(2, 1fr); */
+  gap: var(--base-padding);
+  position: relative;
+}
+
+.project-card:not(:last-of-type) {
+  padding-bottom: var(--base-padding);
+}
+
+.project-card:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--text-base);
 }
 
 .project-card img {
@@ -440,7 +460,7 @@ section {
   border: 1px solid var(--primary);
   /* font-size: 1.8rem; */
   font-weight: 600;
-  margin-top: 2em;
+  margin-top: var(--base-padding);
   transition: all 100ms ease-out 0s;
 }
 
@@ -453,7 +473,7 @@ section {
 @media screen and (min-width: 800px) {
   .contact-form {
     display: flex;
-    gap: 2em;
+    gap: var(--base-padding);
     grid-template-columns: repeat(8, 1fr);
   }
   .form-header {
@@ -478,11 +498,27 @@ section {
   }
 
   .project-card img {
-    width: calc(50% - 2em);
+    width: calc(50% - var(--base-padding));
   }
 }
 
 @media screen and (max-width: 800px) {
+  :root {
+    --base-padding: 24px;
+  }
+
+  section {
+    padding: 0;
+  }
+
+  .section-wrapper {
+    padding: var(--base-padding);
+  }
+
+  .header-wrapper {
+    padding: 0 var(--base-padding);
+  }
+
   .hero {
     text-align: center;
   }
@@ -499,8 +535,6 @@ section {
   }
 
   .hero-content {
-    flex-direction: column-reverse;
-    justify-content: space-around;
     text-align: start;
   }
 

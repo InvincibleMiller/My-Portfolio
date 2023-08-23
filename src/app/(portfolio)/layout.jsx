@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div className="content-overlay"></div>
+        <div className="header-bg"></div>
         <Header />
         {children}
       </body>
