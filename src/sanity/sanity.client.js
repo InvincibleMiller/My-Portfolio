@@ -1,4 +1,4 @@
-import SanityClient from "next-sanity-client";
+import {createClient} from "@sanity/client";
 import { cache } from "react";
 
 const config = {
@@ -9,6 +9,6 @@ const config = {
   useCdn: false,
 };
 
-const client = new SanityClient(config);
+const client = createClient(config);
 
 export default client;

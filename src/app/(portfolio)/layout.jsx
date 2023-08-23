@@ -1,6 +1,4 @@
 import "./globals.css";
-import LenisRoot from "@/components/lenis";
-
 import Header from "@/components/Header";
 
 export const metadata = {
@@ -34,7 +32,6 @@ export default function RootLayout({ children }) {
         <div className="content-overlay"></div>
         <Header />
         {children}
-        {/* <LenisRoot /> */}
       </body>
     </html>
   );
