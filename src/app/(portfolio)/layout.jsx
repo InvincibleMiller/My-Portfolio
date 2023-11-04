@@ -1,5 +1,5 @@
-import "./globals.css";
-import Header from "@/components/Header";
+import "./normalize.css";
+import "./global.css";
 
 export const metadata = {
   metadataBase: new URL(process.env.SITE_URL),
@@ -16,6 +16,8 @@ export const metadata = {
     "Isaac Miller",
     "Software Engineer",
     "Front End",
+    "Full Stack",
+    "Back End",
     "Portfolio",
     "Web Developer",
     "Web Development",
@@ -28,11 +30,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <div className="header-bg"></div>
-        <Header />
-        {children}
-      </body>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400&family=Vollkorn&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
