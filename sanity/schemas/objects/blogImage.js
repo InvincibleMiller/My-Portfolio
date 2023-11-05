@@ -44,7 +44,7 @@ export default defineType({
           },
         },
       ],
-      validation: (r) => r.required(),
+      // validation: (r) => r.required(),
     }),
   ],
 });

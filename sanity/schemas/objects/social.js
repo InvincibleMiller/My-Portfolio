@@ -19,5 +19,11 @@ export default defineType({
       type: "url",
       validation: (r) => r.required(),
     }),
+    defineField({
+      name: "icon",
+      title: "Logo",
+      type: "image",
+      validation: (r) => r.required(),
+    }),
   ],
 });

@@ -31,5 +31,11 @@ export default defineType({
       type: "featured",
       validation: (r) => r.required(),
     }),
+    defineField({
+      name: "thoughts",
+      title: "Thoughts",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
   ],
 });
