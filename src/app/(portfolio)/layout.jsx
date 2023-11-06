@@ -9,7 +9,8 @@ import CollapseButton from "@/src/components/CollapseButton";
 
 import { urlForImage } from "@/sanity/lib/image";
 
-import UrlWatch from "@/src/components/UrlWatch";
+import UrlWatch from "@/src/components/Effects/UrlWatch";
+import StickifyNav from "@/src/components/Effects/StickifyNav";
 
 export const metadata = {
   metadataBase: new URL(process.env.SITE_URL),
@@ -20,8 +21,7 @@ export const metadata = {
   creator: "Isaac Miller",
   publisher: "Isaac Miller",
   applicationName: "Isaac Miller's Portfolio",
-  description:
-    "Front-End Web Portfolio by Isaac Miller. JavaScript/React, Next.js, Sanity CMS. 2 years of professional experience.",
+  description: "Developer portfolio & Blog by Isaac Miller.",
   keywords: [
     "Isaac Miller",
     "Software Engineer",
@@ -54,7 +54,11 @@ export default async function layout({ children }) {
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin={+true}
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400&family=Vollkorn&display=swap"
           rel="stylesheet"
@@ -62,6 +66,7 @@ export default async function layout({ children }) {
       </head>
       <body>
         <UrlWatch />
+        <StickifyNav />
         <header>
           <div className="header-title">
             <div className="container-center">
