@@ -15,7 +15,10 @@ export default async function page({ params }) {
   const { postSlug } = params;
 
   const postDocument = await sanityClient.fetch(
-    groq`*[_type == "post" && slug.current == "${postSlug}"][0]`
+    groq`*[_type == "post" && slug.current == "${postSlug}"][0]`,
+    {
+      next: { revalidate: 30 },
+    }
   );
 
   if (!postDocument) return 404;
