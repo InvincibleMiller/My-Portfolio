@@ -9,6 +9,8 @@ import CollapseButton from "@/src/components/CollapseButton";
 
 import { urlForImage } from "@/sanity/lib/image";
 
+import UrlWatch from "@/src/components/UrlWatch";
+
 export const metadata = {
   metadataBase: new URL(process.env.SITE_URL),
   title: {
@@ -59,6 +61,7 @@ export default async function layout({ children }) {
         />
       </head>
       <body>
+        <UrlWatch />
         <header>
           <div className="header-title">
             <div className="container-center">
@@ -67,7 +70,7 @@ export default async function layout({ children }) {
             </div>
           </div>
           <div className="navbar-container">
-            <div className="nav-collapse">
+            <div className="nav-collapse container-center">
               <CollapseButton target={"#nav-collapse"} />
             </div>
             <div
