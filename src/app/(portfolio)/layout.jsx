@@ -1,6 +1,14 @@
 import "./normalize.css";
 import "./global.css";
 
+import { client as sanityClient } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+
+import Link from "next/link";
+import CollapseButton from "@/src/components/CollapseButton";
+
+import { urlForImage } from "@/sanity/lib/image";
+
 export const metadata = {
   metadataBase: new URL(process.env.SITE_URL),
   title: {
@@ -27,7 +35,19 @@ export const metadata = {
   ],
 };
 
-export default function RootLayout({ children }) {
+export default async function layout({ children }) {
+  const params = {
+    next: {
+      revalidate: 30, // look for updates to revalidate cache every 30s
+    },
+  };
+  const newestHomePage = await sanityClient.fetch(
+    groq`*[_type == "homePage"] | order(_createAt desc) [0]`,
+    params
+  );
+
+  const { title: pageTitle, hook: pageHook, socials } = newestHomePage;
+
   return (
     <html lang="en">
       <head>
@@ -38,7 +58,70 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <header>
+          <div className="header-title">
+            <div className="container-center">
+              <h3 className="display-sub">{pageHook}</h3>
+              <h1 className="display-title">{pageTitle}</h1>
+            </div>
+          </div>
+          <div className="navbar-container">
+            <div className="nav-collapse">
+              <CollapseButton target={"#nav-collapse"} />
+            </div>
+            <div
+              id="nav-collapse"
+              className="container-center collapse-content"
+            >
+              <div className="position-absolute top right">
+                <CollapseButton close target={"#nav-collapse"} />
+              </div>
+              <nav className="navbar">
+                <ul>
+                  <li>
+                    <Link scroll href="/">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link scroll href={"/#projects"}>
+                      Projects
+                    </Link>
+                  </li>
+                  <li>Blog</li>
+                  <li>Contact</li>
+                  <li className="socials">
+                    {socials?.map(({ name, url, icon }) => {
+                      return (
+                        <a
+                          className="social"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={url}
+                        >
+                          <div
+                            className="social-icon"
+                            style={{
+                              backgroundImage: `url("${urlForImage(icon)
+                                .width(16)
+                                .url()}")`,
+                            }}
+                            alt={name}
+                          ></div>
+                          <span style={{ display: "none" }}>{name}</span>
+                        </a>
+                      );
+                    })}
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </header>
+        <main>{children}</main>
+        <footer></footer>
+      </body>
     </html>
   );
 }
