@@ -32,6 +32,7 @@ function StickifyNav() {
       }
     });
   }, [0]);
+
   return <div style={{ display: "none" }}></div>;
 }
 
