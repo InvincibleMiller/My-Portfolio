@@ -9,12 +9,11 @@ import { PortableText } from "@portabletext/react";
 
 import { tsToSimple } from "@/src/util/timestamps";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
 export default async function page() {
-  const params = {
-    next: {
-      revalidate: 30, // look for updates to revalidate cache every 30s
-    },
-  };
+  const params = {};
 
   const newestHomePage = await sanityClient.fetch(
     groq`*[_type == "homePage"] {thoughts, "featured": featured.post->} | order(_createAt desc) [0]`,

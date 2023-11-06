@@ -9,7 +9,7 @@ function StickifyNav() {
     const navbarContainer = document.querySelector(".navbar-container");
     const header = document.querySelector("header");
 
-    window.addEventListener("scroll", (e) => {
+    const stickify = (e) => {
       // check if the navbar is already sticky
       const stickyAlready = navbarContainer.classList.contains("sticky");
 
@@ -30,7 +30,10 @@ function StickifyNav() {
         navbarContainer.classList.remove("sticky");
         header.style.marginBottom = "0px";
       }
-    });
+    };
+
+    stickify();
+    window.addEventListener("scroll", stickify);
   }, [0]);
 
   return <div style={{ display: "none" }}></div>;

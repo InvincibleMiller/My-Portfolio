@@ -37,12 +37,11 @@ export const metadata = {
   ],
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
 export default async function layout({ children }) {
-  const params = {
-    next: {
-      revalidate: 30, // look for updates to revalidate cache every 30s
-    },
-  };
+  const params = {};
   const newestHomePage = await sanityClient.fetch(
     groq`*[_type == "homePage"] | order(_createAt desc) [0]`,
     params

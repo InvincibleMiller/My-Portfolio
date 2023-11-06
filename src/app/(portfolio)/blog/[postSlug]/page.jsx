@@ -11,14 +11,14 @@ import {
   EmbeddedVideo,
 } from "@/src/components/Blog/BlogComponents";
 
-export default async function page({ params }) {
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
+const Page = async ({ params }) => {
   const { postSlug } = params;
 
   const postDocument = await sanityClient.fetch(
-    groq`*[_type == "post" && slug.current == "${postSlug}"][0]`,
-    {
-      next: { revalidate: 30 },
-    }
+    groq`*[_type == "post" && slug.current == "${postSlug}"][0]`
   );
 
   if (!postDocument) return 404;
@@ -63,4 +63,6 @@ export default async function page({ params }) {
       </div>
     </section>
   );
-}
+};
+
+export default Page;
