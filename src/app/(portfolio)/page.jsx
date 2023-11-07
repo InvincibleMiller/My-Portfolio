@@ -3,11 +3,9 @@ import { groq } from "next-sanity";
 
 import { urlForImage } from "@/sanity/lib/image";
 
-import Thumbnail from "@/src/components/Thumbnail";
-
 import { PortableText } from "@portabletext/react";
 
-import { tsToSimple } from "@/src/util/timestamps";
+import PostList from "@/src/components/PostList";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
@@ -36,18 +34,7 @@ export default async function page() {
       <section id="featured">
         <div className="container-center container-sm">
           <h1 className="section-title">Featured</h1>
-          <a href={`/blog/${featuredPost?.slug.current}`} className="post-card">
-            <Thumbnail
-              src={urlForImage(featuredPost?.preview.image).quality(60).url()}
-            />
-            <div className="card-body">
-              <p className="time-title">
-                {tsToSimple(featuredPost?._createdAt)}
-              </p>
-              <h2 className="card-title">{featuredPost?.title}</h2>
-              <p>{featuredPost?.hook}</p>
-            </div>
-          </a>
+          <PostList posts={[featuredPost]} />
         </div>
       </section>
       <section id="thoughts">
@@ -63,22 +50,7 @@ export default async function page() {
             <div className="column" id="post-column">
               <h1 className="section-title">Posts</h1>
               <div>
-                {recentPosts?.map(
-                  ({ title, preview, hook, slug, _createdAt }) => {
-                    return (
-                      <a href={`/blog/${slug.current}`} className="post-card">
-                        <Thumbnail
-                          src={urlForImage(preview.image).quality(60).url()}
-                        />
-                        <div className="card-body">
-                          <p className="time-title">{tsToSimple(_createdAt)}</p>
-                          <h2 className="card-title">{title}</h2>
-                          <p>{hook}</p>
-                        </div>
-                      </a>
-                    );
-                  }
-                )}
+                <PostList posts={recentPosts} />
               </div>
             </div>
             <div className="column" id="about-me">

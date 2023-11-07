@@ -87,17 +87,19 @@ export default async function layout({ children }) {
               <nav className="navbar">
                 <ul>
                   <li>
-                    <Link scroll href="/">
+                    <Link className="navbar-link" scroll href="/">
                       Home
                     </Link>
                   </li>
                   <li>
-                    <Link scroll href={"/#projects"}>
+                    <Link className="navbar-link" scroll href={"/#projects"}>
                       Projects
                     </Link>
                   </li>
                   <li>
-                    <Link href={"/blog/"}>Blog</Link>
+                    <Link className="navbar-link" href={"/blog/"}>
+                      Blog
+                    </Link>
                   </li>
                   <li>Contact</li>
                   <li className="socials">

@@ -33,7 +33,7 @@ const Page = async ({ params }) => {
 
   return (
     <section id="blog-post">
-      <div className="container-center container-sm">
+      <div className="container-center container-blog">
         <h1>{title}</h1>
         <p className="time-title">
           <span>Published: {tsToSimple(publishedTS)}</span>&nbsp;|&nbsp;

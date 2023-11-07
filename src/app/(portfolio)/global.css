@@ -2,7 +2,8 @@
   --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --container-width: 1300px;
-  --blog-post-width: 1000px;
+  --container-width-sm: 1000px;
+  --blog-post-width: 800px;
   --border-color: #c6c4e2;
   --min-padding: 0px 24px;
   font-size: clamp(1rem, 0.9143rem + 0.4571vw, 1.2rem);
@@ -57,6 +58,10 @@ header > * {
 }
 
 .container-sm {
+  max-width: var(--container-width-sm);
+}
+
+.container-blog {
   max-width: var(--blog-post-width);
 }
 
@@ -167,6 +172,11 @@ p:last-child {
   font-size: 1rem;
 }
 
+.navbar-link.active {
+  color: purple;
+  font-weight: 400;
+}
+
 .social {
   width: 1em;
   display: inline-block;
@@ -226,7 +236,7 @@ a.post-card {
 
 img.blog {
   border-radius: var(--br-md);
-  border: 1px solid gray;
+  box-shadow: var(--shadow-sm);
 }
 
 section {
@@ -391,5 +401,27 @@ section {
 
   .collapse-content.collapsed {
     transform: translateX(0);
+  }
+}
+
+/* blog post page */
+
+.blog-post-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.blog-post-container > *:first-child {
+  flex-basis: 100%;
+}
+
+.blog-post-container > * {
+  flex: 0 1 50%;
+}
+
+@media screen and (max-width: 800px) {
+  .blog-post-container > * {
+    flex-basis: 100%;
   }
 }
