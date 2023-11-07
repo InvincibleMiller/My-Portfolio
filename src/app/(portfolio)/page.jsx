@@ -83,16 +83,18 @@ export default async function page() {
             </div>
             <div className="column" id="about-me">
               <h1 className="section-title">About Me</h1>
-              <div className="content">
-                <img
-                  className="profile-image"
-                  src={urlForImage(newestProfile?.image.image)
-                    .width(640)
-                    .height(640)
-                    .url()}
-                />
-                <div>
-                  <PortableText value={newestProfile?.bio} />
+              <div className="post-card">
+                <div className="content card-body">
+                  <img
+                    className="profile-image"
+                    src={urlForImage(newestProfile?.image.image)
+                      .width(640)
+                      .height(640)
+                      .url()}
+                  />
+                  <div>
+                    <PortableText value={newestProfile?.bio} />
+                  </div>
                 </div>
               </div>
             </div>

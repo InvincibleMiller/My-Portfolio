@@ -96,7 +96,9 @@ export default async function layout({ children }) {
                       Projects
                     </Link>
                   </li>
-                  <li>Blog</li>
+                  <li>
+                    <Link href={"/blog/"}>Blog</Link>
+                  </li>
                   <li>Contact</li>
                   <li className="socials">
                     {socials?.map(({ name, url, icon }) => {
