@@ -13,6 +13,7 @@
 
   --ease-middle: cubic-bezier(0.66, 0.34, 0.35, 0.74);
 
+  --spacing-sm: max(24px, 1.4rem);
   --spacing-md: 32px;
 
   --bg: white;
@@ -201,6 +202,10 @@ a.post-card {
   color: inherit;
 }
 
+.post-card:not(:last-child) {
+  margin-bottom: var(--spacing-sm);
+}
+
 .post-card {
   /* border: 1px solid var(--border-color); */
   box-shadow: var(--shadow);
@@ -213,11 +218,14 @@ a.post-card {
   height: 0;
   padding-top: 56.25%;
   background-size: cover;
-  /* border-bottom: 1px solid var(--border-color); */
+}
+
+.thumbnail + .card-body {
+  border-top: 1px solid var(--border-color);
 }
 
 .card-body {
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
 }
 
 .card-body > *:first-child {

@@ -103,9 +103,10 @@ export default async function layout({ children }) {
                   </li>
                   <li>Contact</li>
                   <li className="socials">
-                    {socials?.map(({ name, url, icon }) => {
+                    {socials?.map(({ name, url, icon }, i) => {
                       return (
                         <a
+                          key={i}
                           className="social"
                           target="_blank"
                           rel="noopener noreferrer"

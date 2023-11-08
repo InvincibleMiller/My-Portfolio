@@ -6,7 +6,7 @@ export function EmbeddedImage({ value: { image, alt, caption } }) {
     <div>
       <img className="blog" src={urlForImage(image).url()} alt={alt} />
       {caption && (
-        <div className="card-body">
+        <div className="card-body text-center">
           <PortableText value={caption} />
         </div>
       )}

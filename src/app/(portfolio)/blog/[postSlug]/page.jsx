@@ -44,20 +44,22 @@ const Page = async ({ params }) => {
             alt={postPreview?.alt}
             src={urlForImage(postPreview?.image).quality(60).url()}
           />
-          <div className="card-body text-center caption">
-            <PortableText value={postPreview?.caption} />
-          </div>
+          {postPreview?.caption && (
+            <div className="card-body text-center caption">
+              <PortableText value={postPreview.caption} />
+            </div>
+          )}
         </div>
-        {content.map((part) => {
+        {content.map((part, i) => {
           const { _type } = part;
 
           switch (_type) {
             case "block":
-              return <PortableText value={part} />;
+              return <PortableText key={i} value={part} />;
             case "embeddedVideo":
-              return <EmbeddedVideo value={part} />;
+              return <EmbeddedVideo key={i} value={part} />;
             case "blogImage":
-              return <EmbeddedImage value={part} />;
+              return <EmbeddedImage key={i} value={part} />;
           }
         })}
       </div>
