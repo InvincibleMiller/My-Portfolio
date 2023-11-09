@@ -31,6 +31,31 @@ const Page = async ({ params }) => {
     _updatedAt: updatedTS,
   } = postDocument;
 
+  const blogComponents = {
+    types: {
+      blogImage: EmbeddedImage,
+      embeddedVideo: EmbeddedVideo,
+    },
+    marks: {
+      internalLink: ({ value, children }) => {
+        const { slug = {} } = value;
+        const href = `/${slug.current}`;
+        return <a href={href}>{children}</a>;
+      },
+      link: ({ value, children }) => {
+        // Read https://css-tricks.com/use-target_blank/
+        const { blank, href } = value;
+        return blank ? (
+          <a href={href} target="_blank" rel="noopener">
+            {children}
+          </a>
+        ) : (
+          <a href={href}>{children}</a>
+        );
+      },
+    },
+  };
+
   return (
     <section id="blog-post">
       <div className="container-center container-blog">
@@ -50,18 +75,7 @@ const Page = async ({ params }) => {
             </div>
           )}
         </div>
-        {content.map((part, i) => {
-          const { _type } = part;
-
-          switch (_type) {
-            case "block":
-              return <PortableText key={i} value={part} />;
-            case "embeddedVideo":
-              return <EmbeddedVideo key={i} value={part} />;
-            case "blogImage":
-              return <EmbeddedImage key={i} value={part} />;
-          }
-        })}
+        <PortableText value={content} components={blogComponents} />
       </div>
     </section>
   );
