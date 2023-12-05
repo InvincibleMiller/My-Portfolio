@@ -19,7 +19,7 @@ export default async function page() {
   );
 
   const recentPosts = await sanityClient.fetch(
-    groq`*[_type == "post"] { title, preview, hook, slug, _createdAt } | order(_createAt desc) [0...5]`,
+    groq`*[_type == "post"] { title, preview, hook, slug, _createdAt } | order(_createdAt desc) [0...5]`,
     params
   );
 
