@@ -422,6 +422,7 @@ section {
 .blog-post-container {
   display: flex;
   flex-wrap: wrap;
+  gap: var(--spacing-md);
 }
 
 .blog-post-container > *:first-child {
@@ -429,7 +430,8 @@ section {
 }
 
 .blog-post-container > * {
-  flex: 0 1 50%;
+  flex: 0 1 calc(50% - var(--spacing-md) * 0.5);
+  margin-bottom: 0px !important;
 }
 
 @media screen and (max-width: 800px) {
