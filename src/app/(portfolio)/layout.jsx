@@ -102,7 +102,7 @@ export default async function layout({ children }) {
                     </Link>
                   </li>
                   <li>Contact</li>
-                  <li className="socials">
+                  <li id="socials">
                     {socials?.map(({ name, url, icon }, i) => {
                       return (
                         <a

@@ -178,6 +178,10 @@ p:last-child {
   font-weight: 400;
 }
 
+.social:not(:only-child):not(:last-child) {
+  margin-right: 1rem;
+}
+
 .social {
   width: 1em;
   display: inline-block;
