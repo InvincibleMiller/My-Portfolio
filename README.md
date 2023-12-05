@@ -2,9 +2,12 @@
 
 ---
 
-Live Demo: https://www.invinciblemiller.com/
+Live Demo: https://www.invinciblemiller.com
+CS50 Video URL: https://youtu.be/9YzJ7s4rm2c
 
 ---
+
+## About Me
 
 Hi, I'm Isaac Miller! I'm a Web Developer based in Ocala, FL, United States. I've been a programmer since I
 was 13 years old, and only recently I decided I wanted to make it my career. I started CS50x as a means of
@@ -45,3 +48,22 @@ in no time it was finished.
 
 Actually... it's been finished for a while, but I had been focusing on a side project, and I never submitted this
 to CS50x! =P
+
+Here's how it works!
+
+The first step is setting up the Next.js project. There are couple ways to do this! You could start blank and
+manually setup folder hierarchy and npm with all the proper dependencies, but the simple way is to run
+
+```bash
+npx create-next-app@latest
+```
+
+and that will install react, next, and so on, but also setup the folder structure.
+Afterwards you have to install the proper sanity dependencies:
+
+- @portabletext/react # for quickly parsing block objects (fancy text)
+- sanity
+- sanity-image # a library for grabbing images from sanity servers quickly
+
+After installing dependencies, define your content schema and starting building pages with the app router. It is
+simple a fun development experience.
