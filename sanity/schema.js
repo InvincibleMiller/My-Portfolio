@@ -2,8 +2,7 @@
 import HomePage from "./schemas/documents/HomePage";
 import Featured from "./schemas/objects/featured";
 import Social from "./schemas/objects/social";
-import BlogImage from "./schemas/objects/blogImage";
-import EmbeddedVideo from "./schemas/objects/embeddedVideo";
+import BlogImage from "./schemas/objects/image";
 import Post from "./schemas/documents/Post";
 import Profile from "./schemas/documents/Profile";
 
@@ -17,6 +16,5 @@ export const schema = {
     Featured,
     Social,
     BlogImage,
-    EmbeddedVideo,
   ],
 };

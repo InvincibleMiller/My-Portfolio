@@ -83,7 +83,7 @@ export default defineType({
           },
         },
         { type: "blogImage" },
-        { type: "embeddedVideo" },
+        // { type: "embeddedVideo" },
       ],
     }),
   ],
